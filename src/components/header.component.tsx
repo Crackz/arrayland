@@ -14,7 +14,7 @@ const Title = styled(Typography)(() => ({
 const Header = () => {
     return (
         <AppBar position="static">
-            <Toolbar variant="regular" sx={{ flex: 1, display: 'flex' }}>
+            <Toolbar variant="regular" sx={{ display: 'flex' }}>
                 <Title variant="h4" color="info">
                     Array Island
                 </Title>
