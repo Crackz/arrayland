@@ -15,16 +15,12 @@ const Header = () => {
     return (
         <AppBar position="static">
             <Toolbar variant="regular" sx={{ display: 'flex' }}>
-                <Title variant="h4" color="info">
+                <Title variant="h4" color="info" fontWeight="bold">
                     Array Island
                 </Title>
                 <IconButton
                     color="info"
                     sx={{
-                        flex: 1,
-                        padding: 0,
-                        width: 0,
-                        height: 0,
                         justifyContent: 'flex-end',
                     }}
                 >
