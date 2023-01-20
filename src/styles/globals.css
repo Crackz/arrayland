@@ -1,5 +1,6 @@
 body {
 	margin: 0;
+	overflow-x: hidden
 }
 
 main {
@@ -9,40 +10,6 @@ main {
 	flex-direction: column;
 	min-height: 100vh;
 	min-width: 100vw;
-}
-
-
-#icons{ 
-	flex: 1;
-	display: flex;
-	justify-content: flex-end;
-	padding-right: 1%;
-}
-
-
-.icon:hover::before {
-  transform: scale(1.1);
-}
-
-.icon:hover {
-  color: #ffee10;
-  text-shadow: 0 0 1px #ffee10;
-}
-
-
-
-#imageArea {
-	min-width: 50%;
-	border-color: cyan;
-	box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.6), 0 0 1px rgba(0, 0, 0, 0);
-	border: 5px solid #393E46;
-	display: flex;
-	resize: both;
-	overflow: auto;
-}
-
-#image {
-	flex:1;
 }
 
 #textarea{
