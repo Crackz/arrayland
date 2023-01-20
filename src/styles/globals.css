@@ -4,8 +4,7 @@ body {
 
 main {
 	margin: 0;
-    background:#121212;
-  	color: #eee;
+    background:#222831;
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
@@ -13,37 +12,11 @@ main {
 }
 
 
-#headerContainer {
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-}
-
-
-#title{
-	flex: 1;
-	font-size:2em;
-    font-family: 'Source Code Pro';
-    text-shadow: 0px 2px 3px #C0C0C0;
-	-webkit-animation: colorFade 5s;
-	-moz-animation: colorFade 5s;
-    animation: colorFade 5s;
-	-webkit-animation-iteration-count: infinite;
-	-moz-animation-iteration-count: infinite;
-	animation-iteration-count: infinite;
-	padding-left: 2%;
-}
-
 #icons{ 
 	flex: 1;
 	display: flex;
 	justify-content: flex-end;
 	padding-right: 1%;
-}
-
-.icon {
-	color:#C0C0C0;
-	padding-right: 2%;
 }
 
 
@@ -56,31 +29,13 @@ main {
   text-shadow: 0 0 1px #ffee10;
 }
 
-#dataContainer { 
-	flex:1;
-	display: flex;
-	margin: 2%;
-	min-height: 100%;
-	align-items: flex-start;
-	
-}
 
-#inputArea{
-	flex: 1;
-	font-family: 'Source Code Pro'; 
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	margin-right: 1%;
-	min-width: 20%;
-}
 
 #imageArea {
 	min-width: 50%;
 	border-color: cyan;
 	box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.6), 0 0 1px rgba(0, 0, 0, 0);
-	border: 5px solid #ccc;
+	border: 5px solid #393E46;
 	display: flex;
 	resize: both;
 	overflow: auto;
@@ -98,30 +53,10 @@ main {
 	background:#ffffff; 
 	font-size:1.5em;
 	box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.6), 0 0 1px rgba(0, 0, 0, 0);
-	border: 5px solid #ccc;
+	border: 5px solid #393E46;
 	color: #444;
 	overflow-y: scroll;
 	margin-bottom: 5%;
-}
-
-button{
-	flex: 1;
-	margin:2%;
-	max-height: 4em;
-	text-align:center; 
-	border:none;
-	padding:1em;
-	font-family: 'Source Code Pro'; 
-	font-size:1.5em;
-	display: inline-block;
-	-webkit-transition-duration: 0.3s;
-	transition-duration: 0.3s;
-	-webkit-transition-property: box-shadow;
-	transition-property: box-shadow;
-	box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.6), 0 0 1px rgba(0, 0, 0, 0);
-	-webkit-transform: translateZ(0);
-	transform: translateZ(0);
-	min-width: 100px;
 }
 
 
@@ -133,14 +68,19 @@ button:active{
 
 
 @-webkit-keyframes colorFade {
-	0%   {color:#C0C0C0;}
-    50%  {color: #4b4b4a;}
+	0%   {color:#EEEEEE;}
+    50%  {color: #393E46;}
+	100% {color: #222831}
 }
+
 @-moz-keyframes colorFade{
-	0%   {color:#C0C0C0;}
-    50%  {color: #4b4b4a;}
+	0%   {color:#EEEEEE;}
+    50%  {color: #393E46;}
+	100% {color: #222831}
 }
+
 @keyframes colorFade{
-	0%   {color:#C0C0C0;}
-    50%  {color: #4b4b4a;}
+	0%   {color:#EEEEEE;}
+    50%  {color: #393E46;}
+	100% {color: #222831}
 }
