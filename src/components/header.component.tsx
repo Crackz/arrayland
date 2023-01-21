@@ -11,7 +11,7 @@ const Title = styled(Typography)(() => ({
     paddingLeft: '2%',
 }));
 
-const Header = () => {
+const Header = ({ onSettingsClicked }: { onSettingsClicked: () => void }) => {
     return (
         <AppBar position="static">
             <Toolbar variant="regular" sx={{ display: 'flex' }}>
@@ -23,6 +23,7 @@ const Header = () => {
                     sx={{
                         justifyContent: 'flex-end',
                     }}
+                    onClick={onSettingsClicked}
                 >
                     <Settings />
                 </IconButton>
