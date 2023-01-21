@@ -4,24 +4,23 @@ import { FormProvider, useFieldArray, useForm } from 'react-hook-form';
 import SettingsForm from './settings-form.component';
 import SettingsHeader from './settings-header.component';
 
-const SettingsModal = ({ shouldOpen, onClose }: { shouldOpen: boolean; onClose: () => void }) => {
+const SettingsModal = ({
+    lands,
+    shouldOpen,
+    onClose,
+    onSave,
+}: {
+    lands: Land[];
+    shouldOpen: boolean;
+    onClose: () => void;
+    onSave: (newLands: Land[]) => void;
+}) => {
     const formMethods = useForm<{ lands: Land[] }>({
-        defaultValues: {
-            lands: [
-                {
-                    value: '0',
-                    hexColor: '#0c71c3',
-                },
-                {
-                    value: '1',
-                    hexColor: '#a17a74',
-                },
-            ],
-        },
+        defaultValues: { lands },
     });
-    const onSubmit = (data: any) => console.log(data);
+    const onSubmit = ({ lands }: { lands: Land[] }) => onSave(lands);
     const {
-        fields: lands,
+        fields: landsWithIds,
         append,
         remove,
     } = useFieldArray({
@@ -60,7 +59,7 @@ const SettingsModal = ({ shouldOpen, onClose }: { shouldOpen: boolean; onClose: 
                     <Grid container mt="5%" justifyContent="center" alignItems="center">
                         <FormProvider {...formMethods}>
                             <SettingsForm
-                                landsWithIds={lands}
+                                landsWithIds={landsWithIds}
                                 onDelete={deleteLand}
                                 onClose={onClose}
                                 onSave={formMethods.handleSubmit(onSubmit)}
