@@ -1,9 +1,18 @@
 import { Land } from '@/interfaces/land.interface';
 import { SettingsForm } from '@/interfaces/settings-form.interface';
-import { Button, FormGroup, FormHelperText, Grid } from '@mui/material';
-import { useEffect, useState } from 'react';
+import {
+    Alert,
+    Button,
+    FormGroup,
+    FormHelperText,
+    Grid,
+    IconButton,
+    Snackbar,
+} from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import { FieldArrayWithId, useFormContext } from 'react-hook-form';
 import LandInput from '../land-input.component';
+import CloseIcon from '@mui/icons-material/Close';
 
 const SettingsForm = ({
     landsWithIds,
@@ -23,7 +32,7 @@ const SettingsForm = ({
     } = useFormContext<SettingsForm>();
 
     useEffect(() => {
-        if (isValidating && duplicatedLand) setDuplicatedLand(undefined);
+        if (isValidating && duplicatedLand) removeDuplicationError();
     }, [isValidating]);
 
     const checkDuplicatedLand = (lands?: Land[]): Land | undefined => {
@@ -45,6 +54,23 @@ const SettingsForm = ({
 
         onSave(lands || []);
     };
+
+    const removeDuplicationError = () => {
+        setDuplicatedLand(undefined);
+    };
+
+    const action = (
+        <React.Fragment>
+            <IconButton
+                size="small"
+                aria-label="close"
+                color="inherit"
+                onClick={() => setDuplicatedLand(undefined)}
+            >
+                <CloseIcon fontSize="small" />
+            </IconButton>
+        </React.Fragment>
+    );
 
     return (
         <FormGroup>
@@ -89,16 +115,19 @@ const SettingsForm = ({
                     </Button>
                 </Grid>
             </Grid>
-            {duplicatedLand && (
-                <Grid container mt={2} justifyContent="center">
-                    <FormHelperText
-                        variant="filled"
-                        component="p"
-                        sx={{ fontWeight: 'bold' }}
-                        error
-                    >{`Value ${duplicatedLand.value} is duplicated`}</FormHelperText>
-                </Grid>
-            )}
+            <Grid container justifyContent="center">
+                <Snackbar
+                    open={Boolean(duplicatedLand)}
+                    autoHideDuration={6000}
+                    onClose={removeDuplicationError}
+                    sx={{ width: '100%' }}
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                >
+                    <Alert onClose={removeDuplicationError} severity="error">
+                        {`Value ${duplicatedLand?.value} is duplicated`}
+                    </Alert>
+                </Snackbar>
+            </Grid>
         </FormGroup>
     );
 };
