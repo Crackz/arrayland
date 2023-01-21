@@ -62,7 +62,7 @@ const SettingsModal = ({
                                 landsWithIds={landsWithIds}
                                 onDelete={deleteLand}
                                 onClose={onClose}
-                                onSave={formMethods.handleSubmit(onSubmit)}
+                                onSave={onSave}
                             />
                         </FormProvider>
                     </Grid>

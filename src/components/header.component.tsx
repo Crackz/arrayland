@@ -16,7 +16,7 @@ const Header = ({ onSettingsClicked }: { onSettingsClicked: () => void }) => {
         <AppBar position="static">
             <Toolbar variant="regular" sx={{ display: 'flex' }}>
                 <Title variant="h4" color="info" fontWeight="bold">
-                    Array Island
+                    Array Land
                 </Title>
                 <IconButton
                     color="info"

@@ -24,10 +24,10 @@ export default function Home() {
     return (
         <ThemeProvider theme={theme}>
             <Head>
-                <title>Array Island</title>
+                <title>Array Land</title>
                 <meta
                     name="description"
-                    content="Array Island helps you convert arrays into 2d pictures"
+                    content="Array Land helps you convert arrays into 2d pictures"
                 />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
