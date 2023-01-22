@@ -1,27 +1,50 @@
-import { Box, Button } from '@mui/material';
+import { ArrayUtils } from '@/utils/array-utils';
+import { Alert, Box, Button, CircularProgress, Grid, Snackbar } from '@mui/material';
+import { Container } from '@mui/system';
 import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-json';
 import 'prismjs/themes/prism.css';
-import React from 'react';
+import { useState } from 'react';
 import Editor from 'react-simple-code-editor';
 
-const JSONEditor = ({}) => {
-    const exampleText = `[
+const example2dArray = `[
   [1, 0, 1, 0, 1, 1, 0, 1, 1, 0],
   [0, 1, 0, 1, 0, 0, 1, 0, 0, 1],
   [1, 0, 1, 0, 1, 1, 0, 1, 1, 0],
   [0, 1, 0, 1, 0, 1, 1, 1, 1, 0],
   [1, 0, 1, 0, 1, 1, 0, 1, 1, 0],
   [0, 1, 0, 1, 0, 0, 1, 0, 0, 1],
-  [0, 0, 1, 1, 0, 0, 1, 1, 1, 0],
+  [0, 0, 1, 1, 0, 0, 1, 1, 1, 0]
 ]`;
-    const [code, setCode] = React.useState(exampleText);
+
+const JSONEditor = ({
+    isLoading,
+    onCodeSubmit,
+}: {
+    isLoading: boolean;
+    onCodeSubmit: (arr2D: (string | number)[][]) => void;
+}) => {
+    const [code, setCode] = useState<string>(example2dArray);
+    const [invalidCodeMsg, setInvalidCodeMsg] = useState<string>('');
+
+    const onSubmit = () => {
+        try {
+            const parsedCode = ArrayUtils.parseStringTo2DArray(code);
+            onCodeSubmit(parsedCode);
+        } catch (err: unknown) {
+            setInvalidCodeMsg(err as string);
+        }
+    };
+
+    const resetInvalidCodeMsg = () => {
+        setInvalidCodeMsg('');
+    };
 
     return (
-        <Box flex={1} display="flex" flexDirection="column" marginRight="2%" minWidth="20%">
-            <Box
+        <Grid container flexDirection="column">
+            <Grid
+                item
                 sx={{
-                    flex: 1,
                     fontFamily: '"Fira code", "Fira Mono", monospace',
                     background: '#ffffff',
                     fontSize: '1.5em',
@@ -39,21 +62,42 @@ const JSONEditor = ({}) => {
                     highlight={(code) => highlight(code, languages.json)}
                     padding={10}
                 />
-            </Box>
-            <Button
-                variant="contained"
-                size="large"
-                sx={{
-                    color: 'info.main',
-                    maxWidth: '200px',
-                    fontSize: '1em',
-                    fontWeight: 'bold',
-                    alignSelf: 'center',
-                }}
-            >
-                Show Land
-            </Button>
-        </Box>
+            </Grid>
+            <Grid item textAlign="center">
+                {!isLoading ? (
+                    <Button
+                        variant="contained"
+                        size="large"
+                        sx={{
+                            color: 'info.main',
+                            minWidth: '200px',
+                            fontSize: '1em',
+                            fontWeight: 'bold',
+                            alignSelf: 'center',
+                        }}
+                        onClick={() => onSubmit()}
+                    >
+                        Show Land
+                    </Button>
+                ) : (
+                    <CircularProgress color="primary" />
+                )}
+            </Grid>
+
+            <Grid container justifyContent="center">
+                <Snackbar
+                    open={Boolean(invalidCodeMsg)}
+                    autoHideDuration={6000}
+                    onClose={resetInvalidCodeMsg}
+                    sx={{ width: '100%' }}
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                >
+                    <Alert onClose={resetInvalidCodeMsg} severity="error">
+                        <pre>{`${invalidCodeMsg}`}</pre>
+                    </Alert>
+                </Snackbar>
+            </Grid>
+        </Grid>
     );
 };
 

@@ -4,12 +4,13 @@ import SettingsModal from '@/components/settings/settings-modal.component';
 import SVGViewer from '@/components/svg-viewer.component';
 import { Land } from '@/interfaces/land.interface';
 import theme from '@/themes/default.theme';
-import { Box, ThemeProvider } from '@mui/material';
+import { Box, Grid, ThemeProvider } from '@mui/material';
 import Head from 'next/head';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export default function Home() {
-    const [modalIsOpened, setModalIsOpened] = React.useState(true);
+    const [modalIsOpened, setModalIsOpened] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [lands, setLands] = useState<Land[]>([
         {
             value: '0',
@@ -20,6 +21,11 @@ export default function Home() {
             hexColor: '#a17a74',
         },
     ]);
+
+    const onCodeSubmit = (arr2D: (string | number)[][]): void => {
+        console.log(arr2D);
+        setIsLoading(true);
+    };
 
     return (
         <ThemeProvider theme={theme}>
@@ -34,10 +40,14 @@ export default function Home() {
             </Head>
             <main>
                 <Header onSettingsClicked={() => setModalIsOpened(true)} />
-                <Box flex={1} display="flex" margin="2%" minHeight="100%" alignItems="flex-start">
-                    <JSONEditor />
-                    <SVGViewer />
-                </Box>
+                <Grid container margin={2} spacing={2} justifyContent="center">
+                    <Grid item xs={5}>
+                        <JSONEditor isLoading={isLoading} onCodeSubmit={onCodeSubmit} />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <SVGViewer isLoading={isLoading} />
+                    </Grid>
+                </Grid>
                 <SettingsModal
                     shouldOpen={modalIsOpened}
                     lands={lands}
