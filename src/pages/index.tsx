@@ -1,16 +1,25 @@
 import Header from '@/components/header.component';
 import JSONEditor from '@/components/json-editor.component';
 import SettingsModal from '@/components/settings/settings-modal.component';
-import SVGViewer from '@/components/svg-viewer.component';
+import SVGViewer from '@/components/svg/svg-viewer.component';
 import { Land } from '@/interfaces/land.interface';
 import theme from '@/themes/default.theme';
-import { Box, Grid, ThemeProvider } from '@mui/material';
+import { Grid, ThemeProvider } from '@mui/material';
 import Head from 'next/head';
 import { useState } from 'react';
 
 export default function Home() {
     const [modalIsOpened, setModalIsOpened] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
+    const [arr2D, setArr2D] = useState<(string | number)[][]>([
+        [1, 0, 1, 0, 1, 1, 0, 1, 1, 0],
+        [0, 1, 0, 1, 0, 0, 1, 0, 0, 1],
+        [1, 0, 1, 0, 1, 1, 0, 1, 1, 0],
+        [0, 1, 0, 1, 0, 1, 1, 1, 1, 0],
+        [1, 0, 1, 0, 1, 1, 0, 1, 1, 0],
+        [0, 1, 0, 1, 0, 0, 1, 0, 0, 1],
+        [0, 0, 1, 1, 0, 0, 1, 1, 1, 0],
+    ]);
+
     const [lands, setLands] = useState<Land[]>([
         {
             value: 'DEFAULT',
@@ -26,9 +35,8 @@ export default function Home() {
         },
     ]);
 
-    const onCodeSubmit = (arr2D: (string | number)[][]): void => {
-        console.log(arr2D);
-        setIsLoading(true);
+    const onCodeSubmit = (arr2D: (string | number)[][]) => {
+        setArr2D(arr2D);
     };
 
     return (
@@ -46,10 +54,13 @@ export default function Home() {
                 <Header onSettingsClicked={() => setModalIsOpened(true)} />
                 <Grid container margin={2} spacing={2} justifyContent="center">
                     <Grid item xs={5}>
-                        <JSONEditor isLoading={isLoading} onCodeSubmit={onCodeSubmit} />
+                        <JSONEditor
+                            defaultValue={JSON.stringify(arr2D)}
+                            onCodeSubmit={onCodeSubmit}
+                        />
                     </Grid>
                     <Grid item xs={6}>
-                        <SVGViewer isLoading={isLoading} />
+                        <SVGViewer lands={lands} arr2D={arr2D} />
                     </Grid>
                 </Grid>
                 <SettingsModal

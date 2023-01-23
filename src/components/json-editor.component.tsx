@@ -1,30 +1,19 @@
 import { ArrayUtils } from '@/utils/array-utils';
-import { Alert, Box, Button, CircularProgress, Grid, Snackbar } from '@mui/material';
-import { Container } from '@mui/system';
+import { Alert, Button, CircularProgress, Grid, Snackbar } from '@mui/material';
 import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-json';
 import 'prismjs/themes/prism.css';
 import { useState } from 'react';
 import Editor from 'react-simple-code-editor';
 
-const example2dArray = `[
-  [1, 0, 1, 0, 1, 1, 0, 1, 1, 0],
-  [0, 1, 0, 1, 0, 0, 1, 0, 0, 1],
-  [1, 0, 1, 0, 1, 1, 0, 1, 1, 0],
-  [0, 1, 0, 1, 0, 1, 1, 1, 1, 0],
-  [1, 0, 1, 0, 1, 1, 0, 1, 1, 0],
-  [0, 1, 0, 1, 0, 0, 1, 0, 0, 1],
-  [0, 0, 1, 1, 0, 0, 1, 1, 1, 0]
-]`;
-
 const JSONEditor = ({
-    isLoading,
+    defaultValue,
     onCodeSubmit,
 }: {
-    isLoading: boolean;
+    defaultValue?: string;
     onCodeSubmit: (arr2D: (string | number)[][]) => void;
 }) => {
-    const [code, setCode] = useState<string>(example2dArray);
+    const [code, setCode] = useState<string>(defaultValue || '');
     const [invalidCodeMsg, setInvalidCodeMsg] = useState<string>('');
 
     const onSubmit = () => {
@@ -64,24 +53,20 @@ const JSONEditor = ({
                 />
             </Grid>
             <Grid item textAlign="center">
-                {!isLoading ? (
-                    <Button
-                        variant="contained"
-                        size="large"
-                        sx={{
-                            color: 'info.main',
-                            minWidth: '200px',
-                            fontSize: '1em',
-                            fontWeight: 'bold',
-                            alignSelf: 'center',
-                        }}
-                        onClick={() => onSubmit()}
-                    >
-                        Show Land
-                    </Button>
-                ) : (
-                    <CircularProgress color="primary" />
-                )}
+                <Button
+                    variant="contained"
+                    size="large"
+                    sx={{
+                        color: 'info.main',
+                        minWidth: '200px',
+                        fontSize: '1em',
+                        fontWeight: 'bold',
+                        alignSelf: 'center',
+                    }}
+                    onClick={() => onSubmit()}
+                >
+                    Show Land
+                </Button>
             </Grid>
 
             <Grid container justifyContent="center">
