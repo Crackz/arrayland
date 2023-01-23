@@ -1,4 +1,4 @@
 export interface Land {
-    value: string;
+    value: string | 'DEFAULT';
     hexColor: string;
 }

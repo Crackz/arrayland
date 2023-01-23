@@ -13,6 +13,10 @@ export default function Home() {
     const [isLoading, setIsLoading] = useState(false);
     const [lands, setLands] = useState<Land[]>([
         {
+            value: 'DEFAULT',
+            hexColor: '#cccccc',
+        },
+        {
             value: '0',
             hexColor: '#0c71c3',
         },

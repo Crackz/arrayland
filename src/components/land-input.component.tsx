@@ -20,43 +20,51 @@ const LandInput = ({
 
     const valueInputError = errors.lands && errors.lands[idx]?.value;
 
+    const valueInput = (
+        <Controller
+            name={`lands.${idx}.value`}
+            control={control}
+            rules={{ required: true }}
+            defaultValue={land.value}
+            render={({ field }) => (
+                <TextField
+                    {...field}
+                    sx={{ input: { textAlign: 'center' } }}
+                    size="small"
+                    label="Value:"
+                    variant="outlined"
+                    error={Boolean(valueInputError)}
+                    helperText={valueInputError && 'Value Is Required'}
+                    disabled={land.value === 'DEFAULT'}
+                />
+            )}
+        />
+    );
+
     return (
         <Grid
             container
             item
             spacing={2}
             justifyContent="center"
-            alignItems="baseline"
+            alignItems="center"
             alignContent="baseline"
             xs={12}
             flexDirection="row"
         >
             <Grid item xs={5}>
-                <Controller
-                    name={`lands.${idx}.value`}
-                    control={control}
-                    rules={{ required: true }}
-                    defaultValue={land.value}
-                    render={({ field }) => (
-                        <TextField
-                            {...field}
-                            sx={{ input: { textAlign: 'center' } }}
-                            size="small"
-                            label="Value:"
-                            variant="outlined"
-                            error={Boolean(valueInputError)}
-                            helperText={valueInputError && 'Value Is Required'}
-                        />
-                    )}
-                />
+                {valueInput}
             </Grid>
             <Grid item xs={5}>
                 <ColorPicker idx={idx} color={land.hexColor} />
             </Grid>
+
             <Grid item xs={2}>
-                <IconButton onClick={() => onDelete(idx)}>
-                    <RemoveCircleIcon color="secondary" />
-                </IconButton>
+                {land.value !== 'DEFAULT' && (
+                    <IconButton onClick={() => onDelete(idx)}>
+                        <RemoveCircleIcon color="secondary" />
+                    </IconButton>
+                )}
             </Grid>
         </Grid>
     );
