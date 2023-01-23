@@ -1,18 +1,9 @@
 import { Land } from '@/interfaces/land.interface';
 import { SettingsForm } from '@/interfaces/settings-form.interface';
-import {
-    Alert,
-    Button,
-    FormGroup,
-    FormHelperText,
-    Grid,
-    IconButton,
-    Snackbar,
-} from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import { Alert, Button, FormGroup, Grid, Snackbar } from '@mui/material';
+import { useEffect, useState } from 'react';
 import { FieldArrayWithId, useFormContext } from 'react-hook-form';
 import LandInput from '../land-input.component';
-import CloseIcon from '@mui/icons-material/Close';
 
 const SettingsForm = ({
     landsWithIds,
@@ -58,19 +49,6 @@ const SettingsForm = ({
     const removeDuplicationError = () => {
         setDuplicatedLand(undefined);
     };
-
-    const action = (
-        <React.Fragment>
-            <IconButton
-                size="small"
-                aria-label="close"
-                color="inherit"
-                onClick={() => setDuplicatedLand(undefined)}
-            >
-                <CloseIcon fontSize="small" />
-            </IconButton>
-        </React.Fragment>
-    );
 
     return (
         <FormGroup>
