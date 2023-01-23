@@ -1,23 +1,25 @@
 import * as React from 'react';
-import { styled, AppBar, Box, Toolbar, IconButton, Typography, MenuItem } from '@mui/material';
+import {
+    styled,
+    AppBar,
+    Box,
+    Toolbar,
+    IconButton,
+    Typography,
+    MenuItem,
+    Grid,
+} from '@mui/material';
 import Settings from '@mui/icons-material/Settings';
-
-const Title = styled(Typography)(() => ({
-    flex: 1,
-    fontSize: '2em',
-    textShadow: '0px 2px 3px #EEEEEE',
-    animation: 'colorFade 30s',
-    animationIterationCount: 'infinite',
-    paddingLeft: '2%',
-}));
+import Image from 'next/image';
+import LogoSVG from 'public/logo.svg';
 
 const Header = ({ onSettingsClicked }: { onSettingsClicked: () => void }) => {
     return (
         <AppBar position="static">
-            <Toolbar variant="regular" sx={{ display: 'flex' }}>
-                <Title variant="h4" color="info" fontWeight="bold">
-                    Array Land
-                </Title>
+            <Toolbar variant="regular">
+                <Typography flex={1} marginLeft="2%">
+                    <Image src={LogoSVG} alt="logo" width={80} height={80} />
+                </Typography>
                 <IconButton
                     color="info"
                     sx={{

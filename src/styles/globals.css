@@ -11,26 +11,3 @@ main {
 	min-height: 100vh;
 	min-width: 100vw;
 }
-
-
-@-webkit-keyframes colorFade {
-	0%   {color:#EEEEEE;}
-    40%  {color: #393E46;}
-	80% {color: #222831}
-	100%   {color:#EEEEEE;}
-
-}
-
-@-moz-keyframes colorFade{
-	0%   {color:#EEEEEE;}
-    40%  {color: #393E46;}
-	80% {color: #222831}
-	100%   {color:#EEEEEE;}
-}
-
-@keyframes colorFade{
-	0%   {color:#EEEEEE;}
-    40%  {color: #393E46;}
-	80% {color: #222831}
-	100%   {color:#EEEEEE;}
-}
