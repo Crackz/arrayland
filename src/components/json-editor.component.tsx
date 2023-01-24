@@ -1,8 +1,7 @@
 import { ArrayUtils } from '@/utils/array-utils';
-import { Alert, Button, CircularProgress, Grid, Snackbar } from '@mui/material';
-import { highlight, languages } from 'prismjs/components/prism-core';
+import { Alert, Button, Grid, Snackbar } from '@mui/material';
+import Prism from 'prismjs';
 import 'prismjs/components/prism-json';
-import 'prismjs/themes/prism.css';
 import { useState } from 'react';
 import Editor from 'react-simple-code-editor';
 
@@ -30,16 +29,14 @@ const JSONEditor = ({
     };
 
     return (
-        <Grid container flexDirection="column">
+        <Grid container item flexDirection="column">
             <Grid
                 item
                 sx={{
                     fontFamily: '"Fira code", "Fira Mono", monospace',
                     background: '#ffffff',
                     fontSize: '1.5em',
-                    boxShadow: '3px 3px 3px rgba(0, 0, 0, 0.6), 0 0 1px rgba(0, 0, 0, 0)',
                     border: '5px solid #393E46',
-                    color: '#444',
                     marginBottom: '5%',
                     overflow: 'auto',
                     maxHeight: '70vh',
@@ -48,8 +45,7 @@ const JSONEditor = ({
                 <Editor
                     value={code}
                     onValueChange={(code) => setCode(code)}
-                    highlight={(code) => highlight(code, languages.json)}
-                    padding={10}
+                    highlight={(code) => Prism.highlight(code, Prism.languages.json, 'json')}
                 />
             </Grid>
             <Grid item textAlign="center">
