@@ -1,24 +1,16 @@
-import * as React from 'react';
-import {
-    styled,
-    AppBar,
-    Box,
-    Toolbar,
-    IconButton,
-    Typography,
-    MenuItem,
-    Grid,
-} from '@mui/material';
 import Settings from '@mui/icons-material/Settings';
+import { AppBar, IconButton, Toolbar, Typography } from '@mui/material';
 import Image from 'next/image';
-import LogoSVG from 'public/logo.svg';
+import Link from 'next/link';
 
 const Header = ({ onSettingsClicked }: { onSettingsClicked: () => void }) => {
     return (
         <AppBar position="static">
             <Toolbar variant="regular">
                 <Typography flex={1} marginLeft="2%">
-                    <Image src={LogoSVG} alt="logo" width={80} height={80} />
+                    <Link href="/">
+                        <Image src="/logo.svg" alt="logo" width={80} height={80} />
+                    </Link>
                 </Typography>
                 <IconButton
                     color="info"

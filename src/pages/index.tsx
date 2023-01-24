@@ -51,15 +51,17 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
-                <Header onSettingsClicked={() => setModalIsOpened(true)} />
-                <Grid container margin={2} spacing={2} justifyContent="center">
-                    <Grid item xs={5}>
+                <Grid container item>
+                    <Header onSettingsClicked={() => setModalIsOpened(true)} />
+                </Grid>
+                <Grid container item p={2} spacing={2} justifyContent="center">
+                    <Grid item xs={12} md={6}>
                         <JSONEditor
                             defaultValue={JSON.stringify(arr2D)}
                             onCodeSubmit={onCodeSubmit}
                         />
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={12} md={6}>
                         <SVGViewer lands={lands} arr2D={arr2D} />
                     </Grid>
                 </Grid>
