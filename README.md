@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://arrayland.magdy.pro" target="blank"><img src="https://arrayland.magdy.pro/public/logo.svg" width="120" alt="ArrayLand Logo" /></a>
+  <a href="https://arrayland.magdy.pro" target="blank"><img src="https://github.com/Crackz/arrayland/blob/main/public/logo.svg" width="120" alt="ArrayLand Logo" /></a>
 </p>
 
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
